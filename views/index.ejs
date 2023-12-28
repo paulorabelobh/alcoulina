@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <h1> <%= title %> </h1>
+    <h2> <p>Olá, este app testa se fica mais barato abastecer com alcool ou gasolina.</p> </h2>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    table,
+    th,
+    td {
+      border: 1px solid black;
+      padding: 8px;
+    }
+    th {
+      text-align: left;
+    }
+    .full-width {
+      width: 98%; /* Define a largura total da célula */
+    }
+  </style>
+</head>
+<body>
+  <form id="calculoForm" action="/calcular" method="POST">
+    <table>
+      <tr>
+        <th></th>
+        <th>Álcool</th>
+        <th>Gasolina</th>
+      </tr>
+      <tr>
+        <td><label for="consumoAlcool">Consumo (km/l):</label></td>
+        <td><input type="number" id="consumoAlcool"   name="consumoAlcool"   step="0.01" required value="<%= defConsumoAlcool %>"></td> 
+        <td><input type="number" id="consumoGasolina" name="consumoGasolina" step="0.01" required value="<%= defConsumoGasolina %>"></td>
+      </tr>
+      <tr>
+        <td><label for="precoAlcool">Preço por Litro:</label></td>
+        <td><input type="number" id="precoAlcool"   name="precoAlcool"   step="0.01" required value="<%= defPrecoAlcool %>"></td>
+        <td><input type="number" id="precoGasolina" name="precoGasolina" step="0.01" required value="<%= defPrecoGasolina %>"></td>
+      </tr>
+      <tr>
+        <td>Veículo nome/marca:</td>
+        <td colspan="2">
+          <input type="text" id="veiculo" name="veiculo" class="full-width" placeholder="Digite o nome do veículo">
+        </td>
+      </tr>
+    </table>
+    <br>
+    <div id="resultado"><%= resultado %></div>
+    <br>
+    <input type="submit" value="Calcular">&nbsp;&nbsp;<input type="submit" value="Cadastrar veículo">
+  </form>
+</body>
+</html>

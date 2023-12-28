@@ -33,26 +33,114 @@
         <th>Gasolina</th>
       </tr>
       <tr>
-        <td><label for="consumoAlcool">Consumo (km/l):</label></td>
+        <td><label for="consumoAlcool">Consumo (km/litro):</label></td>
         <td><input type="number" id="consumoAlcool"   name="consumoAlcool"   step="0.01" required value="<%= defConsumoAlcool %>"></td> 
         <td><input type="number" id="consumoGasolina" name="consumoGasolina" step="0.01" required value="<%= defConsumoGasolina %>"></td>
       </tr>
       <tr>
-        <td><label for="precoAlcool">Preço por Litro:</label></td>
+        <td><label for="precoAlcool">Preço por litro:</label></td>
         <td><input type="number" id="precoAlcool"   name="precoAlcool"   step="0.01" required value="<%= defPrecoAlcool %>"></td>
         <td><input type="number" id="precoGasolina" name="precoGasolina" step="0.01" required value="<%= defPrecoGasolina %>"></td>
       </tr>
       <tr>
         <td>Veículo nome/marca:</td>
         <td colspan="2">
-          <input type="text" id="veiculo" name="veiculo" class="full-width" placeholder="Digite o nome do veículo">
+          <input type="text" id="veiculo" name="veiculo" class="full-width" placeholder=""> <!-- Digite o nome do veículo" -->
         </td>
       </tr>
     </table>
     <br>
     <div id="resultado"><%= resultado %></div>
+    <div style="color: red;">
+      <% if (erros && erros.length> 0) { %>
+        <ul>
+          <% erros.forEach(function(erro) { %>
+            <li>
+              <%= erro %>
+            </li>
+            <% }); %>
+        </ul>
+        <% } %>
+    </div>
     <br>
-    <input type="submit" value="Calcular">&nbsp;&nbsp;<input type="submit" value="Cadastrar veículo">
+    <button onclick="enviar('/calcular')">Calcular</button>
+    <button onclick="enviar('/cadastrar')">Cadastrar Veículo</button>
+    <script>
+      function enviar(novoAction) {
+        // Encontra o formulário pelo ID
+        var form = document.getElementById('calculoForm');
+        // Altera o atributo action do formulário
+        form.action = novoAction;
+        // Submete o formulário
+        form.submit();
+      }
+    </script>
   </form>
+  <h4>Top 3 Carros Mais Econômicos:</h4>
+  <table border="1">
+    <tr>
+      <th colspan="2">no Álcool</th>
+      <th colspan="2">na Gasolina</th>
+    </tr>
+    <tr>
+      <td>Carro</td>
+      <td>Km/L</td>
+      <td>Carro</td>
+      <td>Km/L</td>
+    </tr>
+    <!-- Linhas de Exemplo -->
+    <tr>
+      <td>Fiat Uno</td>
+      <td>15</td>
+      <td>Chevrolet Onix</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <td>Toyota Corolla</td>
+      <td>18</td>
+      <td>Ford Ka</td>
+      <td>19</td>
+    </tr>
+    <tr>
+      <td>Volkswagen Gol</td>
+      <td>16</td>
+      <td>Renault Kwid</td>
+      <td>18</td>
+    </tr>
+  </table>
+  
+  <h4>Top 3 Carros Menos Econômicos:</h4>
+  <table border="1">
+    <tr>
+      <th colspan="2">no Álcool</th>
+      <th colspan="2">na Gasolina</th>
+    </tr>
+    <tr>
+      <td>Carro</td>
+      <td>Km/L</td>
+      <td>Carro</td>
+      <td>Km/L</td>
+    </tr>
+    <!-- Linhas de Exemplo -->
+    <tr>
+      <td>Chevrolet Camaro</td>
+      <td>7</td>
+      <td>Jeep Compass</td>
+      <td>9</td>
+    </tr>
+    <tr>
+      <td>Ford Mustang</td>
+      <td>8</td>
+      <td>Land Rover Discovery</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <td>Audi Q8</td>
+      <td>9</td>
+      <td>BMW X5</td>
+      <td>11</td>
+    </tr>
+  </table>
+
 </body>
 </html>
